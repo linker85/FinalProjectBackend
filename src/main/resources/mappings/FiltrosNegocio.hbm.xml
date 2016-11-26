@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 6/01/2011 05:14:47 PM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.proximate.www.pushmate.model.FiltroNegocio" table="filtro_negocio">
+		<composite-id>
+			<key-property name="filtro" column="filtro" type="string"/>
+			<key-property name="filtro1" column="filtro_1" type="string"/>
+			<key-property name="filtro2" column="filtro_2" type="string"/>
+		</composite-id>    
+    </class>
+</hibernate-mapping>

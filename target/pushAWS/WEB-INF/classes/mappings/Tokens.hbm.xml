@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 6/01/2011 05:14:47 PM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.proximate.www.pushmate.model.Token" table="tokens">
+         <id name="token" type="string">
+            <column name="token"/>
+        </id>
+        <property name="filtro" type="string">
+            <column name="filtro"/>
+        </property>
+		<property name="fechaAcceso" type="java.sql.Timestamp">
+			<column name="fecha_acceso" />
+		</property>		
+        <property name="plataforma" type="string">
+            <column name="plataforma"/>
+        </property>		
+        <property name="arn_topic" type="string">
+            <column name="arn_topic"/>
+        </property>		
+        <property name="arn_app" type="string">
+            <column name="arn_app"/>
+        </property>		
+        <property name="arn_suscription" type="string">
+            <column name="arn_suscription"/>
+        </property>	
+        <property name="arn_endpoint" type="string">
+            <column name="arn_endpoint"/>
+        </property>		
+        <property name="id_aplicacion" type="integer">
+            <column name="id_aplicacion"/>
+        </property>		
+        <property name="id_canal" type="integer">
+            <column name="id_canal"/>
+        </property>	
+        <property name="mac" type="string">
+            <column name="mac"/>
+        </property>	
+    </class>
+</hibernate-mapping>

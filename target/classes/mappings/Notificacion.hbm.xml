@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 6/01/2011 05:14:47 PM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+	<class name="com.proximate.www.pushmate.model.Notificacion" table="notificaciones">
+		<id name="id" type="integer">
+			<column name="ID" />
+		</id>
+		<property name="fechaCreacion" type="java.sql.Timestamp">
+			<column name="fecha_creacion" />
+		</property>		
+		<property name="fechaProgramacion" type="java.sql.Timestamp">
+			<column name="fecha_programacion" />
+		</property>		
+		<property name="fechaEnvio" type="java.sql.Timestamp">
+			<column name="fecha_envio" />
+		</property>		
+		<property name="titulo" type="string">
+			<column name="titulo" />
+		</property>		
+		<property name="cuerpo" type="string">
+			<column name="cuerpo" />
+		</property>	
+		<property name="canal" type="string">
+			<column name="canal" />
+		</property>	
+		<property name="usuarioId" type="integer">
+			<column name="id_usuario" />
+		</property>
+		
+		<property name="ios" type="boolean">
+			<column name="ios" />
+		</property>
+		
+		<property name="android" type="boolean">
+			<column name="android" />
+		</property>
+		
+		<property name="blackberry" type="boolean">
+			<column name="blackberry" />
+		</property>
+		
+		<property name="windowsPhone" type="boolean">
+			<column name="windows_phone" />
+		</property>
+		
+		<property name="avanzada" type="boolean">
+			<column name="avanzada" />
+		</property>
+		<property name="filtro" type="string">
+			<column name="filtro" />
+		</property>
+		<property name="token" type="string">
+			<column name="token" />
+		</property>
+		
+		<property name="textoApp" type="string">
+			<column name="textoApp" />
+		</property>
+		
+		<property name="id_aplicacion" type="integer">
+			<column name="id_aplicacion" />
+		</property>			
+		
+		<many-to-one name="tipoID"  column="id_tipo"/>		
+		<many-to-one name="estatusId" column="id_estatus" />		
+	</class>
+	
+	
+	<sql-query name="listaPendientes">
+			<return alias="notificacion" class="com.proximate.www.pushmate.model.Notificacion"/>
+			<![CDATA[
+			select n.id as {notificacion.id}, 
+			n.fecha_creacion as {notificacion.fechaCreacion},
+			n.fecha_programacion as {notificacion.fechaProgramacion}, 
+			n.fecha_envio as {notificacion.fechaEnvio}, 
+			n.titulo as {notificacion.titulo},
+			n.cuerpo as {notificacion.cuerpo},
+			n.id_tipo as {notificacion.tipoID}, 
+			n.ios as {notificacion.ios},
+			n.android as {notificacion.android},
+			n.blackberry as {notificacion.blackberry},
+			n.windows_phone as {notificacion.windowsPhone}, 
+			n.id_usuario as {notificacion.usuarioId}, 
+			n.id_estatus as {notificacion.estatusId} 
+			from Notificacion n, Estatus e 
+			where n.id_estatus = e.id 
+			and n.fecha_programacion < now() 
+			and e.valor = 'pendiente'
+			]]>
+	</sql-query>
+</hibernate-mapping>

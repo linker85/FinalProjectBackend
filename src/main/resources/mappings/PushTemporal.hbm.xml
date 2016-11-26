@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 6/01/2011 05:14:47 PM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.proximate.www.pushmate.model.PushTemporal" table="push_temporal">
+         <id name="id" type="integer">
+            <column name="id"/>
+        </id>
+        <property name="filtro" type="string">
+            <column name="filtro"/>
+        </property>
+        <property name="mensaje" type="string">
+            <column name="mensaje"/>
+        </property>
+        <property name="idUsuario" type="integer">
+            <column name="id_usuario"/>
+        </property>
+        <property name="canal" type="string">
+            <column name="canal"/>
+        </property>
+        <property name="token" type="string">
+            <column name="token"/>
+        </property>
+        <property name="titulo" type="string">
+            <column name="titulo"/>
+        </property>
+        <property name="plataforma" type="string">
+            <column name="plataforma"/>
+        </property>
+    </class>
+</hibernate-mapping>

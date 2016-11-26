@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 6/01/2011 05:14:47 PM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.proximate.www.pushmate.model.TipoPlataforma" table="tipo_plataformas">
+         <id name="id" type="int">
+            <column name="ID"/>
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre"/>
+        </property>
+        <property name="activo" type="boolean">
+            <column name="ACTIVO"/>
+        </property>
+    </class>
+</hibernate-mapping>

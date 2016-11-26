@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 6/01/2011 05:14:47 PM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+	<class name="com.proximate.www.pushmate.model.NotificacionPojo" table="reporte1">
+		<id name="id" type="integer" />
+		<property name="fechaProgramacion" type="string" />
+		<property name="fechaCreacion" type="string" />
+		<property name="fechaEnvio" type="string" />
+		<property name="titulo" type="string" />
+		<property name="cuerpo" type="string" />
+		<property name="tipo" type="string" />	
+	 	<property name="ios" type="boolean" />
+	 	<property name="android" type="boolean" />
+	 	<property name="blackberry" type="boolean" />
+	 	<property name="windowsPhone" type="boolean" />
+	 	<property name="usuario" type="string" />
+	 	<property name="estatus" type="string" />
+	 	<property name="canal" type="string" />
+	 	<property name="avanzada" type="boolean" />
+		<property name="filtro" type="string" />
+		<property name="token" type="string" />
+	</class>
+	
+</hibernate-mapping>

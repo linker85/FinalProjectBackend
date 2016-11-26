@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 6/01/2011 05:14:47 PM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+	<class name="com.proximate.www.dashmate.model.Usuario" table="usuario">
+		<id name="id" type="integer">
+			<column name="ID" />
+			<generator class="native" />
+		</id>
+		<property name="cveUsuario" type="string">
+			<column name="CVE_USUARIO" />
+		</property>
+		<property name="password" type="string">
+			<column name="PASSWORD" />
+		</property>
+		<property name="activo" type="boolean">
+			<column name="ACTIVO" />
+		</property>
+		<property name="nombre" type="string">
+			<column name="NOMBRE" />   
+		</property>
+		<property name="rolId" type="integer">
+			<column name="ID_ROL" />
+		</property>
+		<property name="primeraVez" type="boolean">
+			<column name="PRIMERA_VEZ" />
+		</property>
+		<property name="email" type="string">
+			<column name="MAIL" />
+		</property>
+		<property name="prediasporcentajevistas" type="integer" >
+			<column name="pre_diasporcentajevistas" default="7" />
+		</property>
+	</class>
+	
+	<sql-query name="getUsuariosSinEncriptar">
+		<return alias="usuario" class="com.proximate.www.dashmate.model.Usuario"/>
+		SELECT id as {usuario.id},
+			CVE_USUARIO AS {usuario.cveUsuario},
+           password(PASSWORD) AS {usuario.password},
+           ACTIVO AS {usuario.activo},
+           nombre as {usuario.nombre},
+           id_rol as {usuario.rolId},
+           primera_vez as {usuario.primeraVez},
+           mail as {usuario.email}
+    	  FROM usuario
+    </sql-query>
+
+
+	<sql-query name="getUsuariosActivos">
+		<return alias="usuario" class="com.proximate.www.dashmate.model.Usuario"/>
+		<![CDATA[SELECT id as {usuario.id},
+		   CVE_USUARIO AS {usuario.cveUsuario},
+           password(PASSWORD) AS {usuario.password},
+           ACTIVO AS {usuario.activo},
+           nombre as {usuario.nombre},
+           id_rol as {usuario.rolId},
+           primera_vez as {usuario.primeraVez},
+           mail as {usuario.email}
+    	  FROM usuario
+    	  where cve_usuario <> 'admin' and activo = 1]]>
+    </sql-query>
+	
+</hibernate-mapping>

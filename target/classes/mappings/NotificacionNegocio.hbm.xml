@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 6/01/2011 05:14:47 PM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+	<class name="com.proximate.www.pushmate.model.NotificacionNegocio" table="notificaciones_negocio">
+		<id name="id" type="integer">
+			<column name="id" />
+		</id>
+		<property name="fechaCreacion" type="java.sql.Timestamp">
+			<column name="fecha_creacion" />
+		</property>		
+		<property name="fechaProgramacion" type="java.sql.Timestamp">
+			<column name="fecha_programacion" />
+		</property>		
+		<property name="fechaEnvio" type="java.sql.Timestamp">
+			<column name="fecha_envio" />
+		</property>		
+		<property name="titulo" type="string">
+			<column name="titulo" />
+		</property>		
+		<property name="cuerpo" type="string">
+			<column name="cuerpo" />
+		</property>	
+		<property name="canal" type="string">
+			<column name="canal" />
+		</property>	
+		<property name="token" type="string">
+			<column name="token" />
+		</property>
+		<property name="filtro" type="string">
+			<column name="filtro" />
+		</property>
+		<property name="plataforma" type="string">
+			<column name="plataforma" />
+		</property>
+		<property name="estatusId" type="integer">
+			<column name="id_estatus" />
+		</property>
+			<property name="notificacionId" type="integer">
+			<column name="id_notificacion" />
+		</property>
+		<property name="parametros" type="string">
+			<column name="parametros" />
+		</property>		
+	</class>
+</hibernate-mapping>
