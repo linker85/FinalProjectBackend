@@ -34,14 +34,15 @@ public class GenNotifPedidosBackground implements ServletContextListener, Runnab
 			System.out.println("Start: " + new Date());
 			DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			List<User> users80 = userDAO.getUsersToSendNotifications(80);
-			List<User> users50 = userDAO.getUsersToSendNotifications(50);
+			List<User> users60 = userDAO.getUsersToSendNotifications(60);
+			List<User> users40 = userDAO.getUsersToSendNotifications(40);
 			List<User> users20 = userDAO.getUsersToSendNotifications(20);
 			List<User> users_1 = userDAO.getUsersToSendNotifications(-1);
 			
 			// Si tengo pedidos por caducar
 			if (users80 != null && !users80.isEmpty()) {
 				// Recorro lista
-				System.out.println("//////////////////////// 80 - 85");
+				System.out.println("//////////////////////// 80");
 				for (User u : users80) {
 					// Obtener tokens
 					try {
@@ -54,15 +55,30 @@ public class GenNotifPedidosBackground implements ServletContextListener, Runnab
 					}
 				}
 			}
-			if (users50 != null && !users50.isEmpty()) {
+			if (users60 != null && !users60.isEmpty()) {
 				// Recorro lista
-				System.out.println("//////////////////////// 50 - 55");
-				for (User u : users50) {
+				System.out.println("//////////////////////// 60");
+				for (User u : users60) {
 					// Obtener tokens
 					try {
 						String dateSend = df.format(new Date());
-						sendNotification(u.getUserid(), "Your time expires at " + u.getEnd() + ", click me to extend your time.", "You got left 50% of your checked time.", 
-								u.getEmail(), "50", dateSend, u.getCoordinates());
+						sendNotification(u.getUserid(), "Your time expires at " + u.getEnd() + ", click me to extend your time.", "You got left 60% of your checked time.", 
+								u.getEmail(), "60", dateSend, u.getCoordinates());
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+			if (users40 != null && !users40.isEmpty()) {
+				// Recorro lista
+				for (User u : users40) {
+					// Obtener tokens
+					System.out.println("//////////////////////// 40");
+					try {
+						String dateSend = df.format(new Date());
+						sendNotification(u.getUserid(), "Your time expires at " + u.getEnd() + ", click me to extend your time.", "You got left 40% of your checked time.", 
+								u.getEmail(), "40", dateSend, u.getCoordinates());
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -73,7 +89,7 @@ public class GenNotifPedidosBackground implements ServletContextListener, Runnab
 				// Recorro lista
 				for (User u : users20) {
 					// Obtener tokens
-					System.out.println("//////////////////////// 20 - 25");
+					System.out.println("//////////////////////// 20");
 					try {
 						String dateSend = df.format(new Date());
 						sendNotification(u.getUserid(), "Your time expires at " + u.getEnd() + ", click me to extend your time.", "You got left 20% of your checked time.", 

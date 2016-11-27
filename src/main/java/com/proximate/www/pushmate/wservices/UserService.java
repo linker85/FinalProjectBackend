@@ -408,4 +408,43 @@ public class UserService {
 		}
 	}
 	
+	@SuppressWarnings({ "finally" })
+	@Path("/updateUserId.do")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public String updateUserId(@QueryParam("email") String email, @QueryParam("userId") String userId) {
+		LoginResponse br = new LoginResponse();
+		Gson gson = new Gson();
+		String responseJSON = null;
+		try {
+			if (email != null && userId != null) {
+				
+				LoginRequest login = new LoginRequest();
+				login.setEmail(email);
+				login.setUserid(userId); 
+				
+				userDAO.updateUserId(login);
+				br.setSuccess(true);
+				br.setMensaje("");
+				// Convertir response a json
+				responseJSON = gson.toJson(br);				
+				return responseJSON;				
+			} else {
+				br.setSuccess(false);
+				br.setMensaje("Email and userId are obligatory.");
+				// Convertir response a json
+				responseJSON = gson.toJson(br);	
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			br.setSuccess(false);
+			br.setMensaje("Error.");
+			// Convertir response a json
+			responseJSON = gson.toJson(br);				
+			return responseJSON;
+		} finally {
+			return responseJSON;
+		}
+	}
+	
 }

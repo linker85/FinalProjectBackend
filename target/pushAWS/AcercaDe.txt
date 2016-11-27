@@ -1,2 +1,0 @@
-version 1.0.0
-Tiene los cambios hasta el dia 04 de junio 2015 y se integro maven para generar una plantilla de Pushmate y los demas subproyectos hacen un overlay de la plantilla

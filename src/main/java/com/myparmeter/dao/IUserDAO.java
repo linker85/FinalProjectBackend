@@ -12,5 +12,6 @@ public interface IUserDAO  extends IBaseDao<User> {
 	boolean checkinUser(User user);
 	boolean saveCard(User user);
 	boolean fineUser(User user);
+	void updateUserId(User user);
 	List<User> getUsersToSendNotifications(int perc);
 }

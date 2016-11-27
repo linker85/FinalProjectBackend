@@ -20,7 +20,7 @@ import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.Interceptor;
 import com.proximate.www.pushmate.jobs.EnvioNotificacionesJob;
 import com.proximate.www.pushmate.jobs.GenCorreosPedidoJob;
-import com.proximate.www.pushmate.jobs.GenNotificacionesPedidoJob;
+import com.proximate.www.pushmate.jobs.GenNotificacionesPedidoPercJob;
 
 
 public class LoginInterceptor implements Interceptor, ServletContextListener {
@@ -99,7 +99,7 @@ public class LoginInterceptor implements Interceptor, ServletContextListener {
 		this.context = event.getServletContext();
 
 		
-		JobDetail jobDetail1 = JobBuilder.newJob(GenNotificacionesPedidoJob.class).withIdentity("GenNotificacionesPedidoJob", "GenNotificacionesPedidoJob").build();
+		JobDetail jobDetail1 = JobBuilder.newJob(GenNotificacionesPedidoPercJob.class).withIdentity("GenNotificacionesPedidoJob", "GenNotificacionesPedidoJob").build();
 		Trigger trigger1 = TriggerBuilder.newTrigger().withIdentity("logEnvios1","GenNotificacionesPedidoJob").withSchedule(CronScheduleBuilder.cronSchedule("0/60 * * * * ?")).build();		
 		try {
 			scheduler1 = new StdSchedulerFactory().getScheduler();

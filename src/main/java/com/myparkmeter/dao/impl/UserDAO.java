@@ -73,6 +73,20 @@ public class UserDAO extends BaseDAOImpl implements IUserDAO {
 		}
 	}
 	
+	@Transactional
+	public void updateUserId(User user) {
+		try {
+			Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
+			StringBuilder sql = new StringBuilder("UPDATE user SET userid = :userid WHERE email = :email");
+			Query query1 = session.createSQLQuery(sql.toString());
+			query1.setParameter("email", user.getEmail());
+			query1.setParameter("userid", user.getUserid());
+			query1.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}	
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Transactional
 	public User userExists2(User user) {
@@ -148,7 +162,7 @@ public class UserDAO extends BaseDAOImpl implements IUserDAO {
 	public boolean fineUser(User user) {
 		try {
 			Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
-			StringBuilder sql = new StringBuilder("UPDATE user SET checked = 2 WHERE (TIMESTAMPDIFF(MINUTE, NOW(), end) * 100) / TIMESTAMPDIFF(MINUTE, start, end) < 0 AND checked = 1 WHERE email = :email ");
+			StringBuilder sql = new StringBuilder("UPDATE user SET checked = 0 WHERE (TIMESTAMPDIFF(MINUTE, NOW(), end) * 100) / TIMESTAMPDIFF(MINUTE, start, end) < 0 AND checked = 1 AND email = :email ");
 			Query query1 = session.createSQLQuery(sql.toString());
 			query1.setParameter("email", user.getEmail());
 			query1.executeUpdate();
@@ -165,7 +179,7 @@ public class UserDAO extends BaseDAOImpl implements IUserDAO {
 		Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
 
 		if (perc > 0) {
-	        String consulta = "SELECT end, email, userid, coordinates, ROUND((TIMESTAMPDIFF(MINUTE, NOW(), end) * 100) / TIMESTAMPDIFF(MINUTE, start, end),2) AS remaining FROM user WHERE (TIMESTAMPDIFF(MINUTE, NOW(), end) * 100) / TIMESTAMPDIFF(MINUTE, start, end) >= :timeLookUp1 AND (TIMESTAMPDIFF(MINUTE, NOW(), end) * 100) / TIMESTAMPDIFF(MINUTE, start, end) <= :timeLookUp2 AND checked = 1";
+	        String consulta = "SELECT end, email, userid, coordinates, ROUND((TIMESTAMPDIFF(MINUTE, NOW(), end) * 100) / TIMESTAMPDIFF(MINUTE, start, end),2) AS remaining FROM user WHERE (TIMESTAMPDIFF(MINUTE, NOW(), end) * 100) / TIMESTAMPDIFF(MINUTE, start, end) = :timeLookUp1 AND checked = 1";
 	        
 			StringBuilder sql = new StringBuilder(consulta);
 			Query query = session.createSQLQuery(sql.toString()).
@@ -176,7 +190,6 @@ public class UserDAO extends BaseDAOImpl implements IUserDAO {
 					addScalar("remaining", Hibernate.FLOAT);
 			
 			query.setParameter("timeLookUp1", perc);
-			query.setParameter("timeLookUp2", (perc + 5));
 			try {
 				List<User> lista = query.setResultTransformer(
 						Transformers.aliasToBean(User.class)).list();
